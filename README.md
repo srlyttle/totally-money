@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💳 Totally Money - Credit Card Eligibility App
 
-## Getting Started
+A modern Next.js application that helps users check their eligibility for credit cards and find the best offers based on their financial profile.
 
-First, run the development server:
+## 🚀 Features
 
+- **Credit Card Eligibility Check** - Multi-step wizard to assess user eligibility
+- **Card Recommendations** - Personalized credit card suggestions
+- **Real-time Validation** - Form validation with instant feedback
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+- **Comprehensive Testing** - Unit tests (Jest) and E2E tests (Cypress)
+- **Type Safety** - Full TypeScript implementation
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI/Shadcn + Custom components
+- **Forms**: React Hook Form + Zod validation
+- **State Management**: React Query (TanStack Query)
+- **Testing**: Jest + React Testing Library + Cypress
+- **Code Quality**: ESLint + Prettier
+
+## 📋 Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd totally-money
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+# Install all dependencies
+npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Or if you prefer yarn
+yarn install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Or if you prefer pnpm
+pnpm install
+```
 
-## Learn More
+### 3. Run the development server
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+A working example of the app exists at 
+https://totally-money.vercel.app/credit-cards
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Deploy on Vercel
+### 4. Verify installation
+- The app should load without errors
+- You should see the credit card eligibility interface
+- Navigate to `/credit-cards` to see the main application
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧪 Testing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project includes cypress and unit testing at multiple levels:
+
+### Unit Tests (Jest)
+```bash
+# Run all unit tests
+npm test
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
+### E2E Tests (Cypress)
+
+#### Running Cypress Tests Locally
+
+**Option 1: Interactive Mode (Recommended for Development)**
+```bash
+# Open Cypress Test Runner UI
+npm run cypress:open
+```
+This opens the Cypress Test Runner where you can:
+- See all available tests
+- Run individual tests
+- Watch tests run in real-time
+- Debug test failures
+- See browser interactions
+
+**Option 2: Headless Mode (CI/Production)**
+```bash
+# Run all E2E tests headlessly
+npm run cypress:run
+
+# Run only sanity tests (faster, recommended for CI)
+npm run cypress:run:sanity
+
+# Run specific test file
+npx cypress run --spec "cypress/e2e/1-credit-card-sanity-test/eligibility.cy.js"
+```
+
+**Option 3: Combined Testing**
+```bash
+# Run all tests (unit + E2E)
+npm run test:ci
+```
+
+#### Cypress Test Structure
+```
+cypress/e2e/
+├── 1-credit-card-sanity-test/     # Core functionality tests
+│   ├── eligibility.cy.js         # Eligibility flow tests
+│   └── todo.cy.js                # Basic functionality tests
+└── 2-advanced-examples/          # Advanced Cypress examples
+    ├── actions.cy.js
+    ├── aliasing.cy.js
+    └── ... (many more)
+```
+
+#### Prerequisites for Cypress
+- Make sure the development server is running (`npm run dev`)
+- Tests will automatically start the app if needed
+- Chrome browser is recommended (comes with Cypress)
+
+## 🚀 CI/CD Pipeline
+
+This project uses GitHub Actions for automated testing and deployment:
+
+### Automated Testing
+- **Unit Tests**: Runs Jest tests on every push and pull request
+- **E2E Tests**: Runs Cypress sanity tests on every push and pull request
+- **Build Verification**: Ensures the app builds successfully before deployment
+
+### Workflow Files
+- **`.github/workflows/tests.yml`** - Main testing pipeline
+- **`.github/workflows/ci.yml`** - Comprehensive CI pipeline
+
+### Node.js Version
+- **CI Environment**: Node.js 22 (latest LTS)
+- **Local Development**: Use Node.js 22+ (see `.nvmrc` file)
+
+### Pre-commit Hooks
+- **Husky**: Runs tests before commits
+- **Code Quality**: Ensures code quality before pushing
+
+### Workflow Triggers
+- Push to `main` or `develop` branches
+- Pull requests to `main` or `develop` branches
+
+### Test Results
+- ✅ **Green**: All tests passed
+- ❌ **Red**: Tests failed (check the Actions tab for details)
+- 🟡 **Yellow**: Tests are running
+
